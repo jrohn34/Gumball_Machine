@@ -5,5 +5,6 @@ public interface IState {
     TransitionResult ejectQuarter();
     TransitionResult turnCrank();
     TransitionResult dispense();
+    void refill();
     String getTheName();
 }

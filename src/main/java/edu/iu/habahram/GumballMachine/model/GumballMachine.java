@@ -6,8 +6,8 @@ public class GumballMachine implements IGumballMachine {
     final String HAS_QUARTER = GumballMachineState.HAS_QUARTER.name();
     final String SOLD = GumballMachineState.GUMBALL_SOLD.name();
     private String id;
-    String state = SOLD_OUT;
-    int count = 0;
+    private String state = SOLD_OUT;
+    private int count = 0;
 
     public GumballMachine(String id, String state, int count) {
         this.id = id;
@@ -115,6 +115,14 @@ public class GumballMachine implements IGumballMachine {
     public void releaseBall() {
 
     }
-
+    @Override
+    public void refill(int count) {
+        if (count > 0) {
+            this.count += count;
+            if (state.equals(SOLD_OUT)) {
+                state = NO_QUARTER; // If the machine was previously sold out, change the state to NoQuarterState
+            }
+        }
+    }
 
 }
